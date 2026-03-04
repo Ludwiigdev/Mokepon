@@ -1,4 +1,5 @@
 let ataqueJugador;
+let ataqueEnemigo;
 
 function iniciarJuego() {
   let jugadorId = document.getElementById('boton-mascota');
@@ -59,39 +60,66 @@ function seleccionarMascotaJugador() {
 }
 
 function seleccionarMascotaEnemigo() {
-  let ataqueAleatorio = aleatorio(1, 6);
+  let mascotaAleatorio = aleatorio(1, 6);
   let spanmascotaEnemigo = document.getElementById('mascota-enemigo');
 
-  if (ataqueAleatorio == 1) {
+  if (mascotaAleatorio == 1) {
     spanmascotaEnemigo.innerHTML = 'Hipodoge';
-  } else if (ataqueAleatorio == 2) {
+  } else if (mascotaAleatorio == 2) {
     spanmascotaEnemigo.innerHTML = 'Capipepo';
-  } else if (ataqueAleatorio == 3) {
+  } else if (mascotaAleatorio == 3) {
     spanmascotaEnemigo.innerHTML = 'Ratigueya';
-  } else if (ataqueAleatorio == 4) {
+  } else if (mascotaAleatorio == 4) {
     spanmascotaEnemigo.innerHTML = 'Langostelvis';
-  } else if (ataqueAleatorio == 5) {
+  } else if (mascotaAleatorio == 5) {
     spanmascotaEnemigo.innerHTML = 'Tucapalma';
-  } else if (ataqueAleatorio == 6) {
+  } else if (mascotaAleatorio == 6) {
     spanmascotaEnemigo.innerHTML = 'Pydos';
   }
 }
 
-function aleatorio(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
 function ataqueFuego() {
   ataqueJugador = 'FUEGO';
-  alert(ataqueJugador);
+  ataqueAleatorioEnemigo();
 }
 function ataqueAgua() {
   ataqueJugador = 'AGUA';
-  alert(ataqueJugador);
+  ataqueAleatorioEnemigo();
 }
 function ataqueTierra() {
   ataqueJugador = 'TIERRA';
-  alert(ataqueJugador);
+  ataqueAleatorioEnemigo();
+}
+
+function ataqueAleatorioEnemigo() {
+  let ataqueAleatorio = aleatorio(1, 3);
+
+  if (ataqueAleatorio == 1) {
+    ataqueEnemigo = 'FUEGO';
+  } else if (ataqueAleatorio == 2) {
+    ataqueEnemigo = 'AGUA';
+  } else {
+    ataqueEnemigo = 'TIERRA';
+  }
+  crearMensaje();
+}
+
+function crearMensaje() {
+  let sectionMensaje = document.getElementById('mensajes');
+
+  let parrafo = document.createElement('p');
+  parrafo.innerHTML =
+    'Tu mascota ataco con ' +
+    ataqueJugador +
+    ', la mascota del enemigo ataco con ' +
+    ataqueEnemigo +
+    ' PENDIENTE DE BATALLA';
+
+  sectionMensaje.appendChild(parrafo);
+}
+
+function aleatorio(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 window.addEventListener('load', iniciarJuego);
