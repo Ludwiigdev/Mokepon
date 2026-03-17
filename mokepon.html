@@ -3,50 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MOKEPON!</title>
+    <script src="js/mokepon.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Mokepon</title>
   </head>
   <body>
-    <h1>MOKEPON!</h1>
     <section id="seleccionar-mascota">
-      <h2>Selecciona tu mascota:</h2>
+      <h1 class="titulo">Mokepon</h1>
 
-      <label for="hipodoge">Hipodoge</label>
-      <input type="radio" name="mascota" id="hipodoge" />
-      <label for="capipepo">Capipepo</label>
-      <input type="radio" name="mascota" id="capipepo" />
-      <label for="ratigueya">Ratigueya</label>
-      <input type="radio" name="mascota" id="ratigueya" />
-      <label for="langostelvis">Langostelvis</label>
-      <input type="radio" name="mascota" id="langostelvis" />
-      <label for="tucapalma">Tucapalma</label>
-      <input type="radio" name="mascota" id="tucapalma" />
-      <label for="pydos">Pydos</label>
-      <input type="radio" name="mascota" id="pydos" />
+      <h2 class="subtitulo">Selecciona tu mascota:</h2>
+
+      <div class="tarjeta">
+        <input type="radio" name="mascota" id="hipodoge" />
+        <label class="tarjeta-mokepon" for="hipodoge">
+          <p>Hipodoge</p>
+          <img src="assets/hipodoge.png" alt="Hipodoge" />
+        </label>
+        <input type="radio" name="mascota" id="capipepo" />
+        <label class="tarjeta-mokepon" for="capipepo">
+          <p>Capipepo</p>
+          <img src="assets/capipepo.png" alt="Capipepo" />
+        </label>
+        <input type="radio" name="mascota" id="ratigueya" />
+        <label class="tarjeta-mokepon" for="ratigueya">
+          <p>Ratigueya</p>
+          <img src="assets/ratigueya.png" alt="Ratigueya" />
+        </label>
+        <input type="radio" name="mascota" id="langostelvis" />
+        <label class="tarjeta-mokepon" for="langostelvis">
+          <p>Langostelvis</p>
+          <img src="assets/langostelvis.png" alt="Langostelvis" />
+        </label>
+        <input type="radio" name="mascota" id="tucapalma" />
+        <label class="tarjeta-mokepon" for="tucapalma">
+          <p>Tucapalma</p>
+          <img src="assets/tucapalma.png" alt="Tucapalma" />
+        </label>
+        <input type="radio" name="mascota" id="pydos" />
+        <label class="tarjeta-mokepon" for="pydos">
+          <p>Pydos</p>
+          <img src="assets/pydos.png" alt="Pydos" />
+        </label>
+      </div>
 
       <button id="boton-mascota">Seleccionar</button>
     </section>
+
     <section id="seleccionar-ataque">
-      <h2>Selecciona tu ataque:</h2>
+      <h1 class="titulo">Mokepon</h1>
 
-      <p>
-        Tu mascota <span id="mascota-jugador"></span> tiene
-        <span id="vidas-jugadas">3</span> vidas
-      </p>
-      <p>
-        La mascota <span id="mascota-enemigo"></span> del enemigo tiene
-        <span id="vidas-enemigo">3</span> vidas
-      </p>
+      <h2 class="subtitulo">Elige tu ataque:</h2>
 
-      <button id="boton-fuego" disabled>Fuego 🔥</button>
-      <button id="boton-agua">Agua 💧</button>
-      <button id="boton-tierra">Tierra 🌱</button>
+      <div class="tarjetas-ataques">
+        <button id="boton-fuego" class="boton-de-ataque">Fuego 🔥</button>
+        <button id="boton-agua" class="boton-de-ataque">Agua 💧</button>
+        <button id="boton-tierra" class="boton-de-ataque">Tierra 🌱</button>
+      </div>
+
+      <div id="mensaje">
+        <p id="resultado">Mucha suerte</p>
+
+        <section id="reiniciar">
+          <button id="boton-reiniciar">Reiniciar</button>
+        </section>
+      </div>
+
+      <div class="ataques">
+        <div class="ataques-jugador">
+          <p id="vidas-jugadas">3</p>
+          <p id="mascota-jugador"></p>
+          <div id="ataque-del-jugador"></div>
+        </div>
+        <div class="ataques-enemigo">
+          <p id="vidas-enemigo">3</p>
+          <p id="mascota-enemigo"></p>
+          <div id="ataque-del-enemigo"></div>
+        </div>
+      </div>
     </section>
-
-    <section id="mensaje"></section>
-    <br />
-    <section id="reiniciar">
-      <button id="boton-reiniciar">Reiniciar Juego</button>
-    </section>
-    <script src="js/mokepon.js"></script>
   </body>
 </html>
