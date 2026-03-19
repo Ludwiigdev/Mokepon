@@ -1,51 +1,105 @@
+const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
+const sectionReiniciar = document.getElementById('reiniciar');
+const botonMascotaJugador = document.getElementById('boton-mascota');
+const botonTierra = document.getElementById('boton-tierra');
+sectionReiniciar.style.display = 'none';
+const botonFuego = document.getElementById('boton-fuego');
+const botonAgua = document.getElementById('boton-agua');
+const botonReiniciar = document.getElementById('boton-reiniciar');
+
+const sectionSeleccionarMascota = document.getElementById(
+  'seleccionar-mascota',
+);
+const inputHipodoge = document.getElementById('hipodoge');
+const inputCapipepo = document.getElementById('capipepo');
+const inputRatigueya = document.getElementById('ratigueya');
+const spanMascotaJugador = document.getElementById('mascota-jugador');
+
+const spanMascotaEnemigo = document.getElementById('mascota-enemigo');
+
+const spanVidasJugador = document.getElementById('vidas-jugador');
+const spanVidasEnemigo = document.getElementById('vidas-enemigo');
+
+const sectionMensajes = document.getElementById('resultado');
+const ataquesDelJugador = document.getElementById('ataques-del-jugador');
+const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo');
+const contenedorTarjetas = document.getElementById('contenedorTarjetas');
+
+let mokepones = [];
 let ataqueJugador;
 let ataqueEnemigo;
+let opcionDeMokepones;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
+class Mokepon {
+  constructor(nombre, foto, vida) {
+    this.nombre = nombre;
+    this.foto = foto;
+    this.vida = vida;
+    this.ataques = [];
+  }
+}
+
+let hipodoge = new Mokepon('Hipodoge', 'assets/hipodoge.png', 5);
+let capipepo = new Mokepon('Capipepo', 'assets/capipepo.png', 5);
+let ratigueya = new Mokepon('Ratigueya', 'assets/ratigueya.png', 5);
+
+hipodoge.ataques.push(
+  { nombre: '💧', id: 'boton-agua' },
+  { nombre: '💧', id: 'boton-agua' },
+  { nombre: '💧', id: 'boton-agua' },
+  { nombre: '🔥', id: 'boton-fuego' },
+  { nombre: '🌱', id: 'boton-tierra' },
+);
+
+capipepo.ataques.push(
+  { nombre: '🌱', id: 'boton-tierra' },
+  { nombre: '🌱', id: 'boton-tierra' },
+  { nombre: '🌱', id: 'boton-tierra' },
+  { nombre: '💧', id: 'boton-agua' },
+  { nombre: '🔥', id: 'boton-fuego' },
+);
+
+ratigueya.ataques.push(
+  { nombre: '🔥', id: 'boton-fuego' },
+  { nombre: '🔥', id: 'boton-fuego' },
+  { nombre: '🔥', id: 'boton-fuego' },
+  { nombre: '💧', id: 'boton-agua' },
+  { nombre: '🌱', id: 'boton-tierra' },
+);
+
+mokepones.push(hipodoge, capipepo, ratigueya);
+
 function iniciarJuego() {
-  let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
   sectionSeleccionarAtaque.style.display = 'none';
 
-  let sectionReiniciar = document.getElementById('reiniciar');
-  sectionReiniciar.style.display = 'none';
+  mokepones.forEach((mokepon) => {
+    opcionDeMokepones = `
+    <input type="radio" name="mascota" id=${mokepon.nombre} />
+    <label class="tarjeta-de-mokepon" for=${mokepon.nombre}>
+      <p>${mokepon.nombre}</p>
+      <img src=${mokepon.foto} alt=${mokepon.nombre}>
+    </label>
+    `;
+    contenedorTarjetas.innerHTML += opcionDeMokepones;
+  });
 
-  let jugadorId = document.getElementById('boton-mascota');
-  jugadorId.addEventListener('click', seleccionarMascotaJugador);
+  botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador);
 
-  let botonFuego = document.getElementById('boton-fuego');
   botonFuego.addEventListener('click', ataqueFuego);
-  let botonAgua = document.getElementById('boton-agua');
-  botonAgua.addEventListener('click', ataqueAgua);
-  let botontierra = document.getElementById('boton-tierra');
-  botontierra.addEventListener('click', ataqueTierra);
 
-  let botonReiniciar = document.getElementById('boton-reiniciar');
+  botonAgua.addEventListener('click', ataqueAgua);
+
+  botonTierra.addEventListener('click', ataqueTierra);
+
   botonReiniciar.addEventListener('click', reiniciarJuego);
 }
 
-// Forma corta
-// function seleccionarMascotaJugador() {
-//   let mascotaSeleccionada = document.querySelector(
-//     'input[name="mascota"]:checked',
-//   );
-
-//   if (mascotaSeleccionada) {
-//     alert('seleccionastes a ' + mascotaSeleccionada.id);
-//   } else {
-//     alert('selecciona una mascota');
-//   }
-// }
-
-// Forma larga
 function seleccionarMascotaJugador() {
-  let inputHipodoge = document.getElementById('hipodoge');
-  let inputCapipepo = document.getElementById('capipepo');
-  let inputRatigueya = document.getElementById('ratigueya');
-  let inputLangostelvis = document.getElementById('langostelvis');
-  let inputTucapalma = document.getElementById('tucapalma');
-  let inputPydos = document.getElementById('pydos');
-  let spanMascotaJugador = document.getElementById('mascota-jugador');
+  sectionSeleccionarMascota.style.display = 'none';
+
+  sectionSeleccionarAtaque.style.display = 'flex';
 
   if (inputHipodoge.checked) {
     spanMascotaJugador.innerHTML = 'Hipodoge';
@@ -53,44 +107,22 @@ function seleccionarMascotaJugador() {
     spanMascotaJugador.innerHTML = 'Capipepo';
   } else if (inputRatigueya.checked) {
     spanMascotaJugador.innerHTML = 'Ratigueya';
-  } else if (inputLangostelvis.checked) {
-    spanMascotaJugador.innerHTML = 'Langostelvis';
-  } else if (inputTucapalma.checked) {
-    spanMascotaJugador.innerHTML = 'Tucapalma';
-  } else if (inputPydos.checked) {
-    spanMascotaJugador.innerHTML = 'Pydos';
   } else {
-    alert('selecciona una mascota');
-    return;
+    alert('Selecciona una mascota');
   }
-
-  let sectionSeleccionarMascota = document.getElementById(
-    'seleccionar-mascota',
-  );
-  sectionSeleccionarMascota.style.display = 'none';
-
-  let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque');
-  sectionSeleccionarAtaque.style.display = 'flex';
 
   seleccionarMascotaEnemigo();
 }
 
 function seleccionarMascotaEnemigo() {
-  let mascotaAleatorio = aleatorio(1, 6);
-  let spanmascotaEnemigo = document.getElementById('mascota-enemigo');
+  let mascotaAleatoria = aleatorio(1, 3);
 
-  if (mascotaAleatorio == 1) {
-    spanmascotaEnemigo.innerHTML = 'Hipodoge';
-  } else if (mascotaAleatorio == 2) {
-    spanmascotaEnemigo.innerHTML = 'Capipepo';
-  } else if (mascotaAleatorio == 3) {
-    spanmascotaEnemigo.innerHTML = 'Ratigueya';
-  } else if (mascotaAleatorio == 4) {
-    spanmascotaEnemigo.innerHTML = 'Langostelvis';
-  } else if (mascotaAleatorio == 5) {
-    spanmascotaEnemigo.innerHTML = 'Tucapalma';
-  } else if (mascotaAleatorio == 6) {
-    spanmascotaEnemigo.innerHTML = 'Pydos';
+  if (mascotaAleatoria == 1) {
+    spanMascotaEnemigo.innerHTML = 'Hipodoge';
+  } else if (mascotaAleatoria == 2) {
+    spanMascotaEnemigo.innerHTML = 'Capipepo';
+  } else {
+    spanMascotaEnemigo.innerHTML = 'Ratigueya';
   }
 }
 
@@ -117,13 +149,11 @@ function ataqueAleatorioEnemigo() {
   } else {
     ataqueEnemigo = 'TIERRA';
   }
+
   combate();
 }
 
 function combate() {
-  let spanVidasJugador = document.getElementById('vidas-jugadas');
-  let spanVidasEnemigo = document.getElementById('vidas-enemigo');
-
   if (ataqueEnemigo == ataqueJugador) {
     crearMensaje('EMPATE');
   } else if (ataqueJugador == 'FUEGO' && ataqueEnemigo == 'TIERRA') {
@@ -143,46 +173,39 @@ function combate() {
     vidasJugador--;
     spanVidasJugador.innerHTML = vidasJugador;
   }
+
   revisarVidas();
 }
 
 function revisarVidas() {
   if (vidasEnemigo == 0) {
-    crearMensajeFinal('FELICIDADES, GANASTES EL JUEGO');
+    crearMensajeFinal('FELICITACIONES! Ganaste :)');
   } else if (vidasJugador == 0) {
-    crearMensajeFinal('LO SIENTO, PERDISTES EL JUEGO');
+    crearMensajeFinal('Lo siento, perdiste :(');
   }
 }
 
 function crearMensaje(resultado) {
-  let sectionMensaje = document.getElementById('resultado');
-  let ataquesDelJugador = document.getElementById('ataque-del-jugador');
-  let ataquesDelEnemigo = document.getElementById('ataque-del-enemigo');
+  let nuevoAtaqueDelJugador = document.createElement('p');
+  let nuevoAtaqueDelEnemigo = document.createElement('p');
 
-  let nuevoAtaquedelJugador = document.createElement('p');
-  let nuevoAtaquedelEnemigo = document.createElement('p');
+  sectionMensajes.innerHTML = resultado;
+  nuevoAtaqueDelJugador.innerHTML = ataqueJugador;
+  nuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo;
 
-  sectionMensaje.innerHTML = resultado;
-  nuevoAtaquedelJugador.innerHTML = ataqueJugador;
-  nuevoAtaquedelEnemigo.innerHTML = ataqueEnemigo;
-
-  ataquesDelJugador.appendChild(nuevoAtaquedelJugador);
-  ataquesDelEnemigo.appendChild(nuevoAtaquedelEnemigo);
+  ataquesDelJugador.appendChild(nuevoAtaqueDelJugador);
+  ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo);
 }
 
 function crearMensajeFinal(resultadoFinal) {
-  let sectionMensaje = document.getElementById('resultado');
+  sectionMensajes.innerHTML = resultadoFinal;
 
-  sectionMensaje.innerHTML = resultadoFinal;
-
-  let botonFuego = document.getElementById('boton-fuego');
   botonFuego.disabled = true;
-  let botonAgua = document.getElementById('boton-agua');
-  botonAgua.disabled = true;
-  let botontierra = document.getElementById('boton-tierra');
-  botontierra.disabled = true;
 
-  sectionReiniciar = document.getElementById('reiniciar');
+  botonAgua.disabled = true;
+
+  botonTierra.disabled = true;
+
   sectionReiniciar.style.display = 'block';
 }
 
