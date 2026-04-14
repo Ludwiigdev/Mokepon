@@ -1,5 +1,8 @@
 # 🎮 Mokepon - Juego Multijugador
 
+![Mokepon Gameplay](public/assets/screenshots/preview.png)
+
+
 Un juego web multijugador en tiempo real donde los jugadores seleccionan su mascota, exploran un mapa interactivo y participan en combates estratégicos.
 
 ## ✨ Características
