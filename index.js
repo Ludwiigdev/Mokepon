@@ -26,8 +26,10 @@ class Jugador {
 }
 
 class Mokepon {
-  constructor(nombre) {
+  constructor(nombre, x, y) {
     this.nombre = nombre;
+    this.x = x;
+    this.y = y;
   }
 }
 
@@ -42,7 +44,7 @@ app.get('/unirse', (req, res) => {
 app.post('/mokepon/:jugadorId', (req, res) => {
   const jugadorId = req.params.jugadorId || '';
   const nombre = req.body.mokepon || '';
-  const mokepon = new Mokepon(nombre);
+  const mokepon = new Mokepon(nombre, Math.floor(Math.random() * 350), Math.floor(Math.random() * 200)); // Asignar coordenadas aleatorias iniciales
 
   const jugadorIndex = jugadores.findIndex(
     (jugador) => jugadorId === jugador.id,
@@ -87,8 +89,7 @@ app.post('/mokepon/:jugadorId/ataques', (req, res) => {
   res.end();
 });
 
-(app.get('/mokepon/:jugadorId/ataques'),
-  (req, res) => {
+app.get('/mokepon/:jugadorId/ataques', (req, res) => {
     const jugadorId = req.params.jugadorId || '';
     const jugador = jugadores.find((jugador) => jugador.id === jugadorId);
     res.send({ ataques: jugador.ataques || [] });

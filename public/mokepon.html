@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>Mokepon</title>
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./animations.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
@@ -20,19 +21,11 @@
     <section id="ver-mapa">
       <h2 class="subtitulo">Recorre el mapa con tu mokepon</h2>
       <canvas id="mapa"></canvas>
-      <button onmouseup="detenerMovimiento()" onmousedown="moverArriba()">
-        Arriba
-      </button>
-      <div>
-        <button onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">
-          Izquierda
-        </button>
-        <button onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">
-          Abajo
-        </button>
-        <button onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">
-          Derecha
-        </button>
+      <div class="controles-mapa">
+        <button class="btn-up" onmouseup="detenerMovimiento()" onmousedown="moverArriba()">Arriba</button>
+        <button class="btn-left" onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">Izquierda</button>
+        <button class="btn-down" onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">Abajo</button>
+        <button class="btn-right" onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">Derecha</button>
       </div>
     </section>
 
@@ -64,6 +57,7 @@
         </div>
       </div>
     </section>
-    <script src="./js/mokepon.js"></script>
+    <script type="module" src="./js/mokeponData.js"></script>
+    <script type="module" src="./js/mokepon.js"></script>
   </body>
 </html>

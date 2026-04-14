@@ -1,0 +1,177 @@
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes attackFlash {
+  0%, 100% {
+    background-color: #334155;
+  }
+  50% {
+    background-color: #f59e0b;
+  }
+}
+
+@keyframes victoryPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Aplicar animaciones a elementos específicos */
+#seleccionar-mascota {
+  animation: fadeInDown 0.6s ease-out;
+}
+
+#seleccionar-ataque {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+#ver-mapa {
+  animation: fadeInDown 0.6s ease-out;
+}
+
+.tarjeta-de-mokepon {
+  animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.tarjeta-de-mokepon:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.tarjeta-de-mokepon:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.tarjeta-de-mokepon:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.boton-de-ataque {
+  animation: fadeInUp 0.4s ease-out backwards;
+}
+
+.boton-de-ataque:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.boton-de-ataque:nth-of-type(2) {
+  animation-delay: 0.1s;
+}
+
+.boton-de-ataque:nth-of-type(3) {
+  animation-delay: 0.2s;
+}
+
+.boton-de-ataque:nth-of-type(4) {
+  animation-delay: 0.3s;
+}
+
+.boton-de-ataque:nth-of-type(5) {
+  animation-delay: 0.4s;
+}
+
+/* Animación para el mensaje de resultado */
+#resultado {
+  animation: victoryPulse 0.6s ease-in-out;
+}
+
+/* Animación para los ataques del jugador y enemigo */
+#ataques-del-jugador p, #ataques-del-enemigo p {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+#ataques-del-enemigo p {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* Efecto hover mejorado para botones */
+button:hover {
+  animation: glow 0.6s ease-in-out infinite;
+}
+
+/* Animación para cuando se presiona un botón de ataque */
+.boton-de-ataque:disabled {
+  animation: shake 0.2s ease-in-out;
+}
